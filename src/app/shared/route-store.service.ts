@@ -21,7 +21,7 @@ export class StoreRouteService {
                 this.routeColllection.push(
                     new SearchRoute(
                         new Marker(route['startLocation']['latitude'], route['startLocation']['longitude'],route['startLocation']['title']),
-                        new Marker(route['destLocation']['latitude'], route['destLocation']['longitude'],route['startLocation']['title'])
+                        new Marker(route['destLocation']['latitude'], route['destLocation']['longitude'],route['destLocation']['title'])
                     ));
             }
         }

@@ -6,10 +6,14 @@ import {FormsModule} from '@angular/forms';
 //Angular Google Map Module
 import { AgmCoreModule } from '@agm/core'; 
 
+//Aplication Modules
+import {AppRoutingModule} from './rt-routing.module';
+
 //Aplication Components
 import { AppComponent } from './app.component';
 import { MyGmap } from './shared/gmap/gmap.component';
 import { NewRoute } from './newroute/new-route.component';
+import { HistoryRoutes } from './historyroutes/history-route.component';
 
 //Services
 import {SearchRouteService} from './shared/route-search.service';
@@ -21,11 +25,13 @@ import {StoreRouteService} from './shared/route-store.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAHnlTiwxld7TbsNtEWGBoPtvnlT4Atpwg',
       libraries:["places"]}),
+      AppRoutingModule
   ],
   declarations: [
     AppComponent,
     MyGmap,
     NewRoute,
+    HistoryRoutes
   ],
   providers:[
     SearchRouteService,

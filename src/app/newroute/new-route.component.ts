@@ -56,17 +56,7 @@ export class NewRoute implements OnInit {
     private submitNewRoute(){
         if (this.searchRouteService.route===null) {alert("Rute nije korektna");return;}
         if(!this.searchRouteService.route.checkeRoute()){alert("Ruta nije korektna");return;};
-        alert("Ok");
-    }
-
-    checkInput(){
-        console.log(this.startingLocationInput.nativeElement.value);
-        console.log(this.searchRouteService.route.getStartLocation().title);
-        if(this.searchRouteService.route.getStartLocation().title!==this.startingLocationInput.nativeElement.value){
-            alert("Rute nije korektna");return;
-        }
-        if(this.searchRouteService.route.getDestLocation().title!==this.destinationLocationInput.nativeElement.value){
-            alert("Ruta nije korektna");return;
-        }
+        this.storeRouteService.addRouteToStorage(this.searchRouteService.route);
+        
     }
 }

@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <nav>
+            <ul class="list-group" *ngIf="histortRoutes!==null && historyRoutes.length>0">
+                <li class="list-group-item justify-content-between" *ngFor="let route of historyRoutes;index as i">
+                    <a [routerLink]="['details',i]">{{route.getStartLocation().title | uppercase}} 
+                         <strong style="color:#333233">---></strong>
+                         {{route.getDestLocation().title | uppercase}}</a>
+                    <span class="badge">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removeRoute(i)">Remove X</button>
+        </span>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
