@@ -20,7 +20,7 @@ export class SearchRouteService {
     }
 
     goToNewRoute(lat: number, lng: number,title:string, type:string) {
-        this.route===null?this.route=new SearchRoute():false;
+        this.route===null||this.route===undefined?this.route=new SearchRoute():false;
         if(type===this.routeType.start){
             this.route.startLocationSet(new Marker(lat,lng,title));
         }

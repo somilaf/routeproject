@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
-
+import {Router} from "@angular/router";
 
 import { MapsAPILoader } from '@agm/core';
 import { AgmMarker} from '@agm/core';
@@ -24,7 +24,7 @@ export class NewRoute implements OnInit {
         private ngZone: NgZone,
         private searchRouteService: SearchRouteService,
         private storeRouteService: StoreRouteService,
-    
+        private router:Router    
     ) { }
     
     ngOnInit() {
@@ -57,6 +57,7 @@ export class NewRoute implements OnInit {
         if (this.searchRouteService.route===null) {alert("Rute nije korektna");return;}
         if(!this.searchRouteService.route.checkeRoute()){alert("Ruta nije korektna");return;};
         this.storeRouteService.addRouteToStorage(this.searchRouteService.route);
+        this.router.url!=="/details"?this.router.navigate(['details']):this.searchRouteService.emitRoute();
         
     }
 }

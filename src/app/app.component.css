@@ -9,6 +9,7 @@
     padding: 1em;
 }
 #car{
+    margin-top: 25px;
     background: url(/src/assets/images/thecar.gif) center no-repeat;
     background-size: contain;
     height:90%;
@@ -35,7 +36,7 @@
     }}
     #main{
         background: #74bbff;
-        min-height: 200px;
+        min-height: 400px;
         padding: 1em;
         border-radius: 1em;
        

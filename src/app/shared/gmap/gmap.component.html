@@ -1,4 +1,41 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+<div class="row">
+        <div class="col-lg-4">
+            <aside>
+                <section>
+                    <div class="card"  id="routeInfo" >
+                        <img class="card-img-top" src="/src/assets/images/travelbycar.jpg" alt="Roud image">
+                        <div class="card-block">
+                            <h4 class="card-title">ROUTE INFO</h4>
+                            <p class="card-text">From: {{startMarker?.title}} </p>
+                            <p class="card-text">To: {{destMarker?.title}} </p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Distance: {{distance}}</li>
+                            <li class="list-group-item">Duration: {{duration}}</li>
+                            <li class="list-group-item">Safe Cruise!</li>
+                        </ul>
+                    </div>
+    
+                </section>
+            </aside>
+        </div>
+        <div class="col-lg-8">
+            <div class="col" id="map">
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                            <agm-marker [latitude]="startMarker?.latitude" [longitude]="startMarker?.longitude">
+                           </agm-marker>
+                       
+                           <agm-marker [latitude]="destMarker?.latitude" [longitude]="destMarker?.longitude">
+                           </agm-marker>
+                           <agm-polyline *ngIf="startMarker && destMarker">
+                               <agm-polyline-point [latitude]="startMarker?.latitude" [longitude]="startMarker?.longitude">
+                               </agm-polyline-point>
+                               <agm-polyline-point [latitude]="destMarker?.latitude" [longitude]="destMarker?.longitude">
+                               </agm-polyline-point>
+                           </agm-polyline>
+                       </agm-map>
+            </div>
+        </div>
+    </div>
 
-   
-</agm-map>
+

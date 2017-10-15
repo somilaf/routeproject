@@ -3,4 +3,13 @@ agm-map{
     max-width:300px;
     max-height:300px;
     transition: all ease-in 1ms;
+   
  }
+#map{
+    padding:0px;
+    border:2px solid white;}
+#routeInfo{
+    margin-bottom: 10px;
+    max-height: 500px;
+    transition: all 2s;
+}
