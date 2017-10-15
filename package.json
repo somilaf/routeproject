@@ -1,0 +1,53 @@
+{
+  "name": "route",
+  "version": "1.0.0",
+  "description": "Application for easy route selection, using google maps API and Angular",
+  "scripts": {
+    "start": "webpack-dev-server --inline --progress --port 8080",
+    "test": "karma start",
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@agm/core": "^1.0.0-beta.1",
+    "@angular/common": "~4.4.5",
+    "@angular/compiler": "~4.4.5",
+    "@angular/core": "~4.4.5",
+    "@angular/forms": "~4.4.5",
+    "@angular/http": "~4.4.5",
+    "@angular/platform-browser": "~4.4.5",
+    "@angular/platform-browser-dynamic": "~4.4.5",
+    "@angular/router": "~4.4.5",
+    "@types/node": "^8.0.34",
+    "core-js": "^2.4.1",
+    "rxjs": "5.4.3",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+    "@types/googlemaps": "^3.29.2",
+    "@types/jasmine": "2.6.0",
+    "@types/node": "^8.0.34",
+    "angular2-template-loader": "^0.6.0",
+    "awesome-typescript-loader": "^3.0.4",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "3.0.1",
+    "file-loader": "^1.1.5",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.16.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.1",
+    "null-loader": "^0.1.1",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "style-loader": "^0.19.0",
+    "typescript": "~2.5.3",
+    "webpack": "3.7.1",
+    "webpack-dev-server": "2.9.1",
+    "webpack-merge": "^4.1.0"
+  },
+  "author": "Milos Djokovic"
+}
