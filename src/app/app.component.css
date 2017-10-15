@@ -22,11 +22,11 @@
         opacity: 0.8;
     }
     50% {
-        transform: translateX(50vw) scale(1.1);
+        transform: translateX(40vw) scale(1.1);
         opacity: 1;
     }
     75%{
-        transform: translateX(90vw) scale(1);
+        transform: translateX(75vw) scale(1);
         opacity:0.8;
     }
     100%{
