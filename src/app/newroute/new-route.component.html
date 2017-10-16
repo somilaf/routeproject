@@ -1,31 +1,24 @@
+<div class="alert alert-danger text-center" role="alert" *ngIf=error>
+        <strong>Bad Route!</strong> Carefully select both options before calculating the route.
+</div>
 <form class="form-inline" (ngSubmit)="submitNewRoute(rf)" #rf="ngForm">
 
     <!-- Starting Location -->
     <div class="col-lg-6">
         <label class="mr-sm-2" for="startingLocationInput"><strong>Starting Location:</strong></label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0 ">
-            <div class="input-group-addon">@</div>
-            <input type="text"
-              class="form-control"
-              id="startingLocationInput"
-              placeholder="Please choose starting location"
-              name="startingLocationInput"
-              #startingLocationInput
-            >
+            <div class="input-group-addon">FROM</div>
+            <input type="text" class="form-control" id="startingLocationInput" placeholder="Please choose starting location" name="startingLocationInput"
+                #startingLocationInput>
         </div>
     </div>
     <!-- Destinaiton -->
     <div class="col-lg-6">
         <label class="mr-sm-2" for="destinationLocationInput"><strong>Destination:</strong></label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0 ">
-            <input type="text"
-            class="form-control"
-            id="destinationLocationInput" 
-            placeholder="Please select desired destination"
-            name="destinationLocationInput"
-            #destinationLocationInput
-            >
-            <div class="input-group-addon">@</div>
+            <input type="text" class="form-control" id="destinationLocationInput" placeholder="Please select desired destination" name="destinationLocationInput"
+                #destinationLocationInput>
+            <div class="input-group-addon">TO</div>
         </div>
     </div>
     <br>
@@ -34,5 +27,6 @@
             <button class="btn btn-primary btn-block" type="submit">Calculate</button>
         </div>
     </div>
+  
 
 </form>

@@ -7,3 +7,16 @@ a{
 a:hover{
     color:#578f3e;
 }
+#historyInfo{
+    width:80%;
+    height: 100%;
+    margin:0 auto;
+    transition: all 0.3s ease-out;
+}
+
+#historyInfo:hover{
+    width:100%;
+    color:red;
+    border: dashed 2px red;
+    font-weight: bold;
+}

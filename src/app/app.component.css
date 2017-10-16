@@ -15,7 +15,7 @@
     height:90%;
     width: 6em;
     animation: moved 4s ease-out forwards;
-    
+       
 }
 @keyframes moved{
     0%{

@@ -13,15 +13,15 @@ export class StoreRouteService {
         }
     }
     initRouteCollection(): SearchRoute[] {
-         if (localStorage !== undefined && localStorage.getItem('routes') !== null) {
-            if ( localStorage.getItem('routes').length === 0 ) return [];
-            this.routeColllection=[];
+        if (localStorage !== undefined && localStorage.getItem('routes') !== null) {
+            if (localStorage.getItem('routes').length === 0) return [];
+            this.routeColllection = [];
             let tmpRoutes = localStorage.getItem('routes');
             for (let route of JSON.parse(tmpRoutes)) {
                 this.routeColllection.push(
                     new SearchRoute(
-                        new Marker(route['startLocation']['latitude'], route['startLocation']['longitude'],route['startLocation']['title']),
-                        new Marker(route['destLocation']['latitude'], route['destLocation']['longitude'],route['destLocation']['title'])
+                        new Marker(route['startLocation']['latitude'], route['startLocation']['longitude'], route['startLocation']['title']),
+                        new Marker(route['destLocation']['latitude'], route['destLocation']['longitude'], route['destLocation']['title'])
                     ));
             }
         }
@@ -29,14 +29,23 @@ export class StoreRouteService {
     }
 
     addRouteToStorage(route: SearchRoute) {
-       this.routeColllection.push(route);
-       this.updateStorageInfo(this.routeColllection);
+        if (this.sameRoute(route)){return;}
+        this.routeColllection.push(route);
+        this.updateStorageInfo(this.routeColllection);
     }
 
-    updateStorageInfo(routes:SearchRoute[]){
+    updateStorageInfo(routes: SearchRoute[]) {
         if (localStorage !== undefined) {
             localStorage.removeItem('routes');
             localStorage.setItem('routes', JSON.stringify(this.routeColllection));
+        }
+    }
+
+    sameRoute(route: SearchRoute):boolean {
+        for (let tmproute of this.routeColllection) {
+            if (JSON.stringify(tmproute) === JSON.stringify(route)) {
+               return true;
+            }
         }
     }
 
