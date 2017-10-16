@@ -1,12 +1,16 @@
-<div class="container-fluid"  id="wrapper">
+<div class="container-fluid" id="wrapper">
     <!-- Header -->
     <header>
-
+        <div id="appAbout" class="hidden-xs-down" style="position: absolute; left: 50%;">
+            <div style="position: relative; left: -50%; ">
+                    <h2>Destination <span class="badge badge-default">CALCULATOR</span></h2>
+            </div>
+        </div> 
         <div class="row">
             <!-- Car Animation  -->
             <div class="col-lg-12 headerbar">
                 <div id="car"></div>
-                
+
             </div>
 
             <!-- Form for adding new routes -->
@@ -21,22 +25,35 @@
     <!-- End Header -->
 
     <br>
-    
+
     <div class="row">
-        <div class="col-md-8 offset-md-2" id="main">
-                <router-outlet></router-outlet>
-       </div>
+
+        <div class="col-md-10 offset-md-1">
+            <ul class="nav nav-tabs" id="menu">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/details" routerLinkActive="active">Map</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-10 offset-md-1" id="main">
+
+            <router-outlet></router-outlet>
+        </div>
     </div>
 
     <br>
 
     <!-- Footer -->
     <footer>
-    
-        <div class="row" >
+
+        <div class="row">
             <div class="col-sm-12 col-md-6 offset-md-3 text-center"><img class="img-fluid" src="/src/assets/images/quantox.png" alt=""></div>
         </div>
-    
+
     </footer>
 
     <!-- End Footer -->

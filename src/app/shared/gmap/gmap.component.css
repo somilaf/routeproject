@@ -1,9 +1,6 @@
 agm-map{
     height: 500px;
-    max-width:300px;
-    max-height:300px;
     transition: all ease-in 1ms;
-   
  }
 #map{
     padding:0px;

@@ -1,5 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { Subscription } from 'rxjs/Subscription';
 
 import { MapsAPILoader } from '@agm/core';
 
@@ -11,7 +12,7 @@ import { SearchRoute, Marker } from './marker';
     templateUrl: './gmap.component.html',
     styleUrls: ['./gmap.component.css']
 })
-export class MyGmap implements OnInit {
+export class MyGmap implements OnInit, OnDestroy {
 
     private zoom: number;//Initial Map Zoom
     private lat: number;//Initial Latitude Cordinate
@@ -22,22 +23,24 @@ export class MyGmap implements OnInit {
     private distance: string;
     private duration: string;
     private userLocation: Marker;
+    private routeSubscription: Subscription;
 
     constructor(private mapsAPILoader: MapsAPILoader, private searchRouteService: SearchRouteService) { }
 
     ngOnInit() {
         this.initMap();
-        this.searchRouteService.routeChanged.subscribe((data: any) => {
-            console.log(data);
+        this.routeSubscription = this.searchRouteService.routeChanged.subscribe((data: any) => {
             this.setMapMarkers(this.searchRouteService.route);
             this.setMapParams(this.startMarker, this.destMarker)
         });
 
     }
     private initMap(): void {
-        if (this.searchRouteService.route !== null) {
+        if (this.searchRouteService.route !== null && this.searchRouteService.route !== undefined) {
+            if(!this.searchRouteService.route.checkeRoute()){return;}
             this.setMapMarkers(this.searchRouteService.route);
             this.setMapParams(this.startMarker, this.destMarker)
+            this.searchRouteService.route=null;
         }
         else {
             this.setMapParams();
@@ -46,13 +49,20 @@ export class MyGmap implements OnInit {
 
     getUserLocation() {
         if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition((position) => {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    localStorage.setItem("browserLocation",JSON.stringify(pos));
+            navigator.geolocation.getCurrentPosition((position) => {
+                if (position === undefined || position === null) { return; }
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                localStorage.setItem("browserLocation", JSON.stringify(pos));
+            },
+                function () {
+                    return;
                 });
+        }
+        else {
+            return;
         }
     }
 
@@ -65,9 +75,9 @@ export class MyGmap implements OnInit {
         }
         else {
             this.getUserLocation();
-            if (localStorage.getItem("browserLocation")!==undefined){
-                let pos=JSON.parse(localStorage.getItem("browserLocation"));
-                this.userLocation=new Marker(pos['lat'],pos['lng'],'Broser Location');
+            if (localStorage.getItem("browserLocation") !== undefined) {
+                let pos = JSON.parse(localStorage.getItem("browserLocation"));
+                this.userLocation = new Marker(pos['lat'], pos['lng'], 'Broser Location');
             }
             this.zoom = 10;
             this.lat = this.userLocation !== undefined ? this.userLocation.latitude : 51.678418;
@@ -80,14 +90,11 @@ export class MyGmap implements OnInit {
         this.route = route;
         this.startMarker = this.route.getStartLocation();
         this.destMarker = this.route.getDestLocation();
-        console.log(this.startMarker);
-        console.log(this.destMarker);
         this.getMatrixData();
     }
 
     getMatrixData() {
         let matrixData = new google.maps.DistanceMatrixService();
-        console.log("Tu sam");
         matrixData.getDistanceMatrix(
             {
                 origins: [this.createOrign(this.startMarker)],
@@ -102,7 +109,6 @@ export class MyGmap implements OnInit {
 
     storeMatrixData(response?: any, status?: any) {
         if (status === 'OK') {
-            console.log(response);
             let origins = response.originAddresses;
             for (var i = 0; i < origins.length; i++) {
                 let results = response.rows[i].elements;
@@ -114,6 +120,10 @@ export class MyGmap implements OnInit {
                 if (parseFloat(this.distance) > 200) { this.zoom = 6; } else { this.zoom = 8; }
             }
         }
+    }
+
+    ngOnDestroy() {
+        this.routeSubscription.unsubscribe();
     }
 
 

@@ -1,10 +1,11 @@
 #wrapper{
     min-height: 768px;
+    
 }
 .headerbar{
     min-height: 6em;
     background-color:#74bbff;
-    border-bottom-right-radius: 3em;
+    border-bottom-left-radius: 2em;
     box-shadow: 0px 5px 5px #888888;
     padding: 1em;
 }
@@ -27,7 +28,7 @@
         opacity: 1;
     }
     75%{
-        transform: translateX(75vw) scale(1);
+        transform: translateX(70vw) scale(1);
         opacity:0.8;
     }
     100%{
@@ -35,12 +36,50 @@
         opacity: 1;
     }}
     #main{
-        background: #74bbff;
-        min-height: 400px;
+        background: white;
+        min-height: 300px;
         padding: 1em;
+        border:solid 2px #74bbff;
         border-radius: 1em;
-       
+        box-shadow: 10px 20px 5px #888888;
     }
+
+    #menu{
+        transition: width 2s;
+       
+        
+    }
+    .nav-item{
+        box-shadow: 0px 5px 5px #888888;
+        transition: all 1s ease-in !important;
+        
+    }
+    .nav-item a{
+        color:#888888!important;
+    }
+    .nav-item  .active {
+        width:150px !important;
+        font-weight: bold;
+        color:white!important;
+        transition: all 0.5s; 
+        background:#74bbff!important;
+    }
+    #appAbout{
+        position: absolute;
+        top:0;
+        z-index: 9999;
+        margin:0 auto;
+        width: 360px;
+        padding: 5px;
+    }
+    #appAbout h2 {
+        color:white;
+        font-weight: 400;
+        
+    }
+
+ 
+
     /* #footer{
         position: fixed;;
         bottom: 2px;

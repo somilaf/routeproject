@@ -5,10 +5,10 @@ import { Marker,SearchRoute } from './gmap/marker';
 
 @Injectable()
 export class SearchRouteService {
-   readonly routeType={start:"START",dest:"DEST"}
-    routeChanged = new Subject<SearchRoute>();
-    route: SearchRoute=null;
 
+     readonly routeType={start:"START",dest:"DEST"}
+     routeChanged = new Subject<SearchRoute>();
+     route: SearchRoute=null;
 
     setRoute(route:SearchRoute){
         this.route=route;
@@ -27,6 +27,5 @@ export class SearchRouteService {
         if (type === this.routeType.dest){
             this.route.destLocationSet(new Marker(lat,lng,title));
         }
-        console.log(this.route);
     }
 }

@@ -5,13 +5,16 @@ import { SearchRoute, Marker } from './gmap/marker';
 
 @Injectable()
 export class StoreRouteService {
+
     routeCollectionChanged = new Subject<SearchRoute[]>();
     routeColllection: SearchRoute[] = [];
+
     readStorage() {
         if (localStorage.getItem("routes") === null || localStorage.getItem("routes") === undefined) {
-            console.log("There is no history");
+          
         }
     }
+    
     initRouteCollection(): SearchRoute[] {
         if (localStorage !== undefined && localStorage.getItem('routes') !== null) {
             if (localStorage.getItem('routes').length === 0) return [];
